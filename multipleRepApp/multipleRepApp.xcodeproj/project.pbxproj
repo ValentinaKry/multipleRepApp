@@ -16,6 +16,13 @@
 		0D0051FF29D31C91007CD2F8 /* StringConstatnts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0051FE29D31C91007CD2F8 /* StringConstatnts.swift */; };
 		0D00520229D31D6A007CD2F8 /* DynamicTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00520129D31D6A007CD2F8 /* DynamicTableView.swift */; };
 		0D00520429D32020007CD2F8 /* ConstrainConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00520329D32020007CD2F8 /* ConstrainConstants.swift */; };
+		0D00520629D32765007CD2F8 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00520529D32765007CD2F8 /* Reachability.swift */; };
+		0D00520829D32775007CD2F8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00520729D32775007CD2F8 /* NetworkManager.swift */; };
+		0D00520A29D3279E007CD2F8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00520929D3279E007CD2F8 /* NetworkError.swift */; };
+		0D00520C29D327D1007CD2F8 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00520B29D327D1007CD2F8 /* Endpoint.swift */; };
+		0D00521229D32F0B007CD2F8 /* BitBucketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00521129D32F0B007CD2F8 /* BitBucketModel.swift */; };
+		0D00521429D32FE9007CD2F8 /* GitHubModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00521329D32FE9007CD2F8 /* GitHubModel.swift */; };
+		0D00521629D3317C007CD2F8 /* RepositopyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00521529D3317C007CD2F8 /* RepositopyListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +37,13 @@
 		0D0051FE29D31C91007CD2F8 /* StringConstatnts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConstatnts.swift; sourceTree = "<group>"; };
 		0D00520129D31D6A007CD2F8 /* DynamicTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTableView.swift; sourceTree = "<group>"; };
 		0D00520329D32020007CD2F8 /* ConstrainConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstrainConstants.swift; sourceTree = "<group>"; };
+		0D00520529D32765007CD2F8 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		0D00520729D32775007CD2F8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		0D00520929D3279E007CD2F8 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		0D00520B29D327D1007CD2F8 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		0D00521129D32F0B007CD2F8 /* BitBucketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitBucketModel.swift; sourceTree = "<group>"; };
+		0D00521329D32FE9007CD2F8 /* GitHubModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubModel.swift; sourceTree = "<group>"; };
+		0D00521529D3317C007CD2F8 /* RepositopyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositopyListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,7 +127,11 @@
 		0D0051F329D2F8AB007CD2F8 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				0D00521029D32EFA007CD2F8 /* Models */,
 				0D0051F929D31BB6007CD2F8 /* Helpers */,
+				0D00520729D32775007CD2F8 /* NetworkManager.swift */,
+				0D00520929D3279E007CD2F8 /* NetworkError.swift */,
+				0D00520B29D327D1007CD2F8 /* Endpoint.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -121,6 +139,7 @@
 		0D0051F629D301D7007CD2F8 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				0D00521529D3317C007CD2F8 /* RepositopyListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -128,6 +147,7 @@
 		0D0051F929D31BB6007CD2F8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				0D00520529D32765007CD2F8 /* Reachability.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -138,6 +158,15 @@
 				0D00520129D31D6A007CD2F8 /* DynamicTableView.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		0D00521029D32EFA007CD2F8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0D00521129D32F0B007CD2F8 /* BitBucketModel.swift */,
+				0D00521329D32FE9007CD2F8 /* GitHubModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,13 +239,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D00520829D32775007CD2F8 /* NetworkManager.swift in Sources */,
 				0D00520429D32020007CD2F8 /* ConstrainConstants.swift in Sources */,
 				0D0051F529D2F8CD007CD2F8 /* Fonts.swift in Sources */,
 				0D0051F229D2F7E2007CD2F8 /* RepositoryListTableViewCell.swift in Sources */,
 				0D0051FF29D31C91007CD2F8 /* StringConstatnts.swift in Sources */,
 				0D00520229D31D6A007CD2F8 /* DynamicTableView.swift in Sources */,
 				0D0051DE29D2E2BD007CD2F8 /* MainRepositoryViewController.swift in Sources */,
+				0D00520629D32765007CD2F8 /* Reachability.swift in Sources */,
+				0D00521629D3317C007CD2F8 /* RepositopyListViewModel.swift in Sources */,
 				0D0051DA29D2E2BD007CD2F8 /* AppDelegate.swift in Sources */,
+				0D00521229D32F0B007CD2F8 /* BitBucketModel.swift in Sources */,
+				0D00520C29D327D1007CD2F8 /* Endpoint.swift in Sources */,
+				0D00521429D32FE9007CD2F8 /* GitHubModel.swift in Sources */,
+				0D00520A29D3279E007CD2F8 /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
