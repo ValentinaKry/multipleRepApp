@@ -2,7 +2,7 @@ import UIKit
 
 final class RepositoryListTableViewCell: UITableViewCell {
 
-//    static let cellID = "RepositoryListTableViewCell"
+    static let cellID = "RepositoryListTableViewCell"
 
     private let repoTitle: UILabel = {
         let label = UILabel()

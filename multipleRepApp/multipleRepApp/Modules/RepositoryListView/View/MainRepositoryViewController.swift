@@ -16,9 +16,8 @@ final class MainRepositoryViewController: UIViewController {
         let tableView = DynamicTableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .singleLine
-//        tableView.estimatedRowHeight = 250
         tableView.showsVerticalScrollIndicator = false
-        tableView.register(RepositoryListTableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(RepositoryListTableViewCell.self, forCellReuseIdentifier: RepositoryListTableViewCell.cellID)
         return tableView
     }()
 
@@ -91,7 +90,7 @@ extension MainRepositoryViewController: UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? RepositoryListTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryListTableViewCell.cellID, for: indexPath) as? RepositoryListTableViewCell else { return UITableViewCell() }
         return cell
     }
 
