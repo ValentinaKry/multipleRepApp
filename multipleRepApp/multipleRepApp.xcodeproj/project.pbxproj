@@ -13,6 +13,9 @@
 		0D0051E629D2E2BE007CD2F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D0051E429D2E2BE007CD2F8 /* LaunchScreen.storyboard */; };
 		0D0051F229D2F7E2007CD2F8 /* RepositoryListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0051F129D2F7E2007CD2F8 /* RepositoryListTableViewCell.swift */; };
 		0D0051F529D2F8CD007CD2F8 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0051F429D2F8CD007CD2F8 /* Fonts.swift */; };
+		0D0051FF29D31C91007CD2F8 /* StringConstatnts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0051FE29D31C91007CD2F8 /* StringConstatnts.swift */; };
+		0D00520229D31D6A007CD2F8 /* DynamicTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00520129D31D6A007CD2F8 /* DynamicTableView.swift */; };
+		0D00520429D32020007CD2F8 /* ConstrainConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00520329D32020007CD2F8 /* ConstrainConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		0D0051E729D2E2BE007CD2F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D0051F129D2F7E2007CD2F8 /* RepositoryListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListTableViewCell.swift; sourceTree = "<group>"; };
 		0D0051F429D2F8CD007CD2F8 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		0D0051FE29D31C91007CD2F8 /* StringConstatnts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConstatnts.swift; sourceTree = "<group>"; };
+		0D00520129D31D6A007CD2F8 /* DynamicTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTableView.swift; sourceTree = "<group>"; };
+		0D00520329D32020007CD2F8 /* ConstrainConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstrainConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +62,11 @@
 		0D0051D829D2E2BD007CD2F8 /* multipleRepApp */ = {
 			isa = PBXGroup;
 			children = (
+				0D00520029D31D4B007CD2F8 /* Helpers */,
 				0D0051D929D2E2BD007CD2F8 /* AppDelegate.swift */,
 				0D0051F429D2F8CD007CD2F8 /* Fonts.swift */,
+				0D0051FE29D31C91007CD2F8 /* StringConstatnts.swift */,
+				0D00520329D32020007CD2F8 /* ConstrainConstants.swift */,
 				0D0051F329D2F8AB007CD2F8 /* Networking */,
 				0D0051ED29D2F60E007CD2F8 /* Modules */,
 				0D0051E229D2E2BE007CD2F8 /* Assets.xcassets */,
@@ -80,6 +89,7 @@
 			children = (
 				0D0051F029D2F6D5007CD2F8 /* Protocols */,
 				0D0051EF29D2F6C8007CD2F8 /* View */,
+				0D0051F629D301D7007CD2F8 /* ViewModel */,
 			);
 			path = RepositoryListView;
 			sourceTree = "<group>";
@@ -103,8 +113,31 @@
 		0D0051F329D2F8AB007CD2F8 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				0D0051F929D31BB6007CD2F8 /* Helpers */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		0D0051F629D301D7007CD2F8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0D0051F929D31BB6007CD2F8 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		0D00520029D31D4B007CD2F8 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0D00520129D31D6A007CD2F8 /* DynamicTableView.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,8 +210,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D00520429D32020007CD2F8 /* ConstrainConstants.swift in Sources */,
 				0D0051F529D2F8CD007CD2F8 /* Fonts.swift in Sources */,
 				0D0051F229D2F7E2007CD2F8 /* RepositoryListTableViewCell.swift in Sources */,
+				0D0051FF29D31C91007CD2F8 /* StringConstatnts.swift in Sources */,
+				0D00520229D31D6A007CD2F8 /* DynamicTableView.swift in Sources */,
 				0D0051DE29D2E2BD007CD2F8 /* MainRepositoryViewController.swift in Sources */,
 				0D0051DA29D2E2BD007CD2F8 /* AppDelegate.swift in Sources */,
 			);

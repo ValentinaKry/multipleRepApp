@@ -6,11 +6,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+        let repoNC = UINavigationController(rootViewController: MainRepositoryViewController())
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        window?.rootViewController = MainRepositoryViewController()
+        window?.rootViewController = repoNC
         return true
     }
+
+    
 }
 
 

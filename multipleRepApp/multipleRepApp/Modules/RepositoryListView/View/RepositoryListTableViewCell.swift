@@ -2,7 +2,7 @@ import UIKit
 
 final class RepositoryListTableViewCell: UITableViewCell {
 
-    static let cellID = "RepositoryListTableViewCell"
+//    static let cellID = "RepositoryListTableViewCell"
 
     private let repoTitle: UILabel = {
         let label = UILabel()
@@ -31,23 +31,15 @@ final class RepositoryListTableViewCell: UITableViewCell {
     private let avatarImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.backgroundColor = .systemTeal
         image.layer.cornerRadius = image.frame.size.width / 2
         image.clipsToBounds = true
+        image.image = UIImage(named: "Mock")
         return image
     }()
 
     private lazy var descibeRepoStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [repoTitle, repoDescription])
+        let stack = UIStackView(arrangedSubviews: [repoTitle, repoDescription, repoTag])
         stack.axis = .vertical
-        stack.spacing = 8
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
-
-    private lazy var mainStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [avatarImage, descibeRepoStack])
-        stack.axis = .horizontal
         stack.spacing = 8
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
@@ -55,6 +47,8 @@ final class RepositoryListTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        prepareSubviews()
+        setupLayout()
     }
 
     required init?(coder: NSCoder) {
@@ -62,18 +56,22 @@ final class RepositoryListTableViewCell: UITableViewCell {
     }
 
     private func prepareSubviews() {
-        self.contentView.addSubview(mainStack)
+        self.contentView.addSubview(avatarImage)
+        self.contentView.addSubview(descibeRepoStack)
     }
 
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            mainStack.topAnchor.constraint(equalTo: contentView.topAnchor),
-            mainStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            mainStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            mainStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            avatarImage.topAnchor.constraint(equalTo: contentView.topAnchor),
+            avatarImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
 
-            avatarImage.widthAnchor.constraint(equalToConstant: 60),
-            avatarImage.heightAnchor.constraint(equalToConstant: 60)
+            descibeRepoStack.topAnchor.constraint(equalTo: contentView.topAnchor),
+            descibeRepoStack.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: ConstrainConstant.tableCellOffset.rawValue),
+            descibeRepoStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            descibeRepoStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+
+            avatarImage.widthAnchor.constraint(equalToConstant: 50),
+            avatarImage.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
 
