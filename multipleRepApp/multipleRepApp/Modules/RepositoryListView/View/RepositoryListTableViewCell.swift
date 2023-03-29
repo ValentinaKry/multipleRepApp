@@ -1,4 +1,5 @@
 import UIKit
+import SDWebImage
 
 final class RepositoryListTableViewCell: UITableViewCell {
 
@@ -75,7 +76,11 @@ final class RepositoryListTableViewCell: UITableViewCell {
         ])
     }
 
-    func configure() {
-
+    func configure(with data: MainScreenModel) {
+        repoTitle.text = data.repoTitle
+        repoDescription.text = data.repoDescribe
+        repoTag.text = data.repoType
+        let url = URL(string: data.avatar)
+        avatarImage.sd_setImage(with: url)
     }
 }

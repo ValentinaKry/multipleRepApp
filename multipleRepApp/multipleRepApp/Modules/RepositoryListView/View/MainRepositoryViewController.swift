@@ -2,6 +2,17 @@ import UIKit
 
 final class MainRepositoryViewController: UIViewController {
 
+    var viewModel: TableViewProvidingProtocol
+
+    init(viewModel: TableViewProvidingProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     private let searchController: UISearchController = {
         let search = UISearchController()
         search.searchBar.translatesAutoresizingMaskIntoConstraints = false
@@ -18,6 +29,7 @@ final class MainRepositoryViewController: UIViewController {
         tableView.separatorStyle = .singleLine
         tableView.showsVerticalScrollIndicator = false
         tableView.register(RepositoryListTableViewCell.self, forCellReuseIdentifier: RepositoryListTableViewCell.cellID)
+        tableView.register(ErrorTableViewCell.self, forCellReuseIdentifier: ErrorTableViewCell.cellID)
         return tableView
     }()
 
@@ -27,6 +39,13 @@ final class MainRepositoryViewController: UIViewController {
         return view
     }()
 
+    private let loaderIndicatorView: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.color = .systemPink
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -34,6 +53,7 @@ final class MainRepositoryViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         addAllSubviews()
         setupConstraints()
+        setupTableView()
         setupUI()
         addDatasourceAndDelegate()
     }
@@ -51,6 +71,7 @@ final class MainRepositoryViewController: UIViewController {
     private func addAllSubviews() {
         view.addSubview(container)
         container.addSubview(tableView)
+        container.addSubview(loaderIndicatorView)
     }
 
     private func setupConstraints() {
@@ -68,6 +89,9 @@ final class MainRepositoryViewController: UIViewController {
                 equalTo: container.trailingAnchor,
                 constant: -ConstrainConstant.tableViewOffset.rawValue),
             tableView.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+
+            loaderIndicatorView.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+            loaderIndicatorView.centerYAnchor.constraint(equalTo: container.centerYAnchor)
         ])
     }
 
@@ -82,16 +106,60 @@ final class MainRepositoryViewController: UIViewController {
         searchController.searchBar.endEditing(true)
     }
 
+    private func setupTableView() {
+        loaderIndicatorView.startAnimating()
+        viewModel.reloadTable = {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.loaderIndicatorView.stopAnimating()
+            }
+        }
+        viewModel.retryCompletion = { [weak self] message in
+            guard let message = message,
+                  let self = self
+            else { return }
+            DispatchQueue.main.async {
+                let alert = self.alertBuilder(
+                    message: message,
+                    completion: {
+                        self.viewModel.retry()
+                    }
+                )
+                self.present(alert, animated: true)
+            }
+        }
+        viewModel.loadData()
+    }
+
 }
 
 extension MainRepositoryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        guard let result = viewModel.amountOfCells() else { return 1 }
+            // If there's no events, return 1 cell, with info label
+        if result == 0 {
+            return 1
+        } else {
+            return  result
+        }
+
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryListTableViewCell.cellID, for: indexPath) as? RepositoryListTableViewCell else { return UITableViewCell() }
-        return cell
+        guard let resultOfData = viewModel.amountOfCells() else { return UITableViewCell() }
+        if resultOfData == 0 {
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: ErrorTableViewCell.cellID,
+                for: indexPath) as? ErrorTableViewCell
+            else { return UITableViewCell() }
+            return cell
+        } else {
+            guard  let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryListTableViewCell.cellID, for: indexPath) as? RepositoryListTableViewCell,
+                   let data = viewModel.getDataResult(cellForRowAt: indexPath)
+                   else { return UITableViewCell() }
+            cell.configure(with: data)
+            return cell
+        }
     }
 
 

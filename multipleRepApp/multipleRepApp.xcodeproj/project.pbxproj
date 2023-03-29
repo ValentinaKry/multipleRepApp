@@ -25,6 +25,9 @@
 		0D00521629D3317C007CD2F8 /* RepositopyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00521529D3317C007CD2F8 /* RepositopyListViewModel.swift */; };
 		0D00521829D41E5D007CD2F8 /* MainScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00521729D41E5D007CD2F8 /* MainScreenModel.swift */; };
 		0D00521A29D42D43007CD2F8 /* TableViewProvidingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00521929D42D43007CD2F8 /* TableViewProvidingProtocol.swift */; };
+		0D00521C29D431E0007CD2F8 /* ErrorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00521B29D431E0007CD2F8 /* ErrorTableViewCell.swift */; };
+		0D00521F29D440C8007CD2F8 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00521E29D440C8007CD2F8 /* UIViewController.swift */; };
+		5F68FAE2E66C3A6847C926AA /* Pods_multipleRepApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E41AF15920E68C55D440C7 /* Pods_multipleRepApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,11 @@
 		0D00521529D3317C007CD2F8 /* RepositopyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositopyListViewModel.swift; sourceTree = "<group>"; };
 		0D00521729D41E5D007CD2F8 /* MainScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModel.swift; sourceTree = "<group>"; };
 		0D00521929D42D43007CD2F8 /* TableViewProvidingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewProvidingProtocol.swift; sourceTree = "<group>"; };
+		0D00521B29D431E0007CD2F8 /* ErrorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTableViewCell.swift; sourceTree = "<group>"; };
+		0D00521E29D440C8007CD2F8 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		107A2C4CD596445848EA33F9 /* Pods-multipleRepApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-multipleRepApp.debug.xcconfig"; path = "Target Support Files/Pods-multipleRepApp/Pods-multipleRepApp.debug.xcconfig"; sourceTree = "<group>"; };
+		83E41AF15920E68C55D440C7 /* Pods_multipleRepApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_multipleRepApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C459332AD6F9AE4FC43B723B /* Pods-multipleRepApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-multipleRepApp.release.xcconfig"; path = "Target Support Files/Pods-multipleRepApp/Pods-multipleRepApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F68FAE2E66C3A6847C926AA /* Pods_multipleRepApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +75,8 @@
 			children = (
 				0D0051D829D2E2BD007CD2F8 /* multipleRepApp */,
 				0D0051D729D2E2BD007CD2F8 /* Products */,
+				88F696DCCD1F4674076A628B /* Pods */,
+				F30917E62EB0C01244FDD2C5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,6 +128,7 @@
 			children = (
 				0D0051DD29D2E2BD007CD2F8 /* MainRepositoryViewController.swift */,
 				0D0051F129D2F7E2007CD2F8 /* RepositoryListTableViewCell.swift */,
+				0D00521B29D431E0007CD2F8 /* ErrorTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -160,6 +172,7 @@
 		0D00520029D31D4B007CD2F8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				0D00521D29D440B4007CD2F8 /* Extentions */,
 				0D00520129D31D6A007CD2F8 /* DynamicTableView.swift */,
 			);
 			path = Helpers;
@@ -175,6 +188,31 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		0D00521D29D440B4007CD2F8 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				0D00521E29D440C8007CD2F8 /* UIViewController.swift */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
+		88F696DCCD1F4674076A628B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				107A2C4CD596445848EA33F9 /* Pods-multipleRepApp.debug.xcconfig */,
+				C459332AD6F9AE4FC43B723B /* Pods-multipleRepApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F30917E62EB0C01244FDD2C5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				83E41AF15920E68C55D440C7 /* Pods_multipleRepApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -182,9 +220,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0D0051EA29D2E2BE007CD2F8 /* Build configuration list for PBXNativeTarget "multipleRepApp" */;
 			buildPhases = (
+				2390343A103A00221B4557EF /* [CP] Check Pods Manifest.lock */,
 				0D0051D229D2E2BD007CD2F8 /* Sources */,
 				0D0051D329D2E2BD007CD2F8 /* Frameworks */,
 				0D0051D429D2E2BD007CD2F8 /* Resources */,
+				BA98272CC03550C9C3CE2BA1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -240,6 +280,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2390343A103A00221B4557EF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-multipleRepApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA98272CC03550C9C3CE2BA1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-multipleRepApp/Pods-multipleRepApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-multipleRepApp/Pods-multipleRepApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-multipleRepApp/Pods-multipleRepApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0D0051D229D2E2BD007CD2F8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -247,6 +329,7 @@
 			files = (
 				0D00521829D41E5D007CD2F8 /* MainScreenModel.swift in Sources */,
 				0D00520829D32775007CD2F8 /* NetworkManager.swift in Sources */,
+				0D00521F29D440C8007CD2F8 /* UIViewController.swift in Sources */,
 				0D00520429D32020007CD2F8 /* ConstrainConstants.swift in Sources */,
 				0D0051F529D2F8CD007CD2F8 /* Fonts.swift in Sources */,
 				0D00521A29D42D43007CD2F8 /* TableViewProvidingProtocol.swift in Sources */,
@@ -254,6 +337,7 @@
 				0D0051FF29D31C91007CD2F8 /* StringConstatnts.swift in Sources */,
 				0D00520229D31D6A007CD2F8 /* DynamicTableView.swift in Sources */,
 				0D0051DE29D2E2BD007CD2F8 /* MainRepositoryViewController.swift in Sources */,
+				0D00521C29D431E0007CD2F8 /* ErrorTableViewCell.swift in Sources */,
 				0D00520629D32765007CD2F8 /* Reachability.swift in Sources */,
 				0D00521629D3317C007CD2F8 /* RepositopyListViewModel.swift in Sources */,
 				0D0051DA29D2E2BD007CD2F8 /* AppDelegate.swift in Sources */,
@@ -394,6 +478,7 @@
 		};
 		0D0051EB29D2E2BE007CD2F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 107A2C4CD596445848EA33F9 /* Pods-multipleRepApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -421,6 +506,7 @@
 		};
 		0D0051EC29D2E2BE007CD2F8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C459332AD6F9AE4FC43B723B /* Pods-multipleRepApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

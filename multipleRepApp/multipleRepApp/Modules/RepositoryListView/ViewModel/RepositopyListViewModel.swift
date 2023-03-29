@@ -5,7 +5,7 @@ final class RepositopyListViewModel: TableViewProvidingProtocol {
     var retryCompletion: ((String?) -> Void)?
     private var networkManager: DataSourceManagerProtocol
     private var gitHubResult = [GitHubModel]()
-    private var bitBucketResult = [BitBucketModel]()
+    private var bitBucketResult : BitBucketModel?
     private var repoResults: MainScreenModel?
     private var allRepoResults = [MainScreenModel?]()
 
@@ -19,14 +19,7 @@ final class RepositopyListViewModel: TableViewProvidingProtocol {
         let url = Endpoint(host: .gitHub, path: .gitHub, quertyName: .gitHub, quertyValue: .gitHub)
         networkManager.loadData(url: url) { [weak self] (item: [GitHubModel]) in
             guard let self = self else { return }
-            for element in item {
-                self.repoResults?.userName = element.fullName
-                self.repoResults?.avatar = element.owner.avatarURL
-                self.repoResults?.repoDescribe = element.description
-                self.repoResults?.repoTitle = element.fullName
-                self.repoResults?.repoType = "Github"
-                self.allRepoResults.append(self.repoResults)
-            }
+            self.gitHubResult = item
             group.enter()
             self.loadBitBuckedData {
                 group.leave()
@@ -45,18 +38,33 @@ final class RepositopyListViewModel: TableViewProvidingProtocol {
         networkManager.loadData(url: url) { [weak self] (item: BitBucketModel) in
             guard let self = self
             else { return }
-            for element in item.values {
-                self.repoResults?.userName = element.owner.displayName
-                self.repoResults?.repoDescribe = element.description
-                self.repoResults?.avatar = element.owner.links.avatar.href
-                self.repoResults?.repoTitle = element.owner.nickname
-                self.repoResults?.repoType = "Bitbucket"
-                
-            }
+            self.bitBucketResult = item
+            self.prepareData()
+            completion()
         } errorHandler: { errorMessage in
             self.retryCompletion?(errorMessage.errorDescription)
         }
 
+    }
+
+    private func prepareData() {
+        for element in gitHubResult {
+            let repoResults = MainScreenModel(userName: element.fullName,
+                                              avatar: element.owner.avatarURL,
+                                              repoTitle: element.fullName,
+                                              repoDescribe: element.description,
+                                              repoType: "Github")
+            allRepoResults.append(repoResults)
+        }
+        guard let bitBucketData = bitBucketResult?.values else { return }
+        for element in bitBucketData {
+            let repoResults = MainScreenModel(userName: element.owner.displayName,
+                                              avatar: element.owner.links.avatar.href,
+                                              repoTitle: element.owner.nickname,
+                                              repoDescribe: element.description,
+                                              repoType: "Bitbucket")
+            allRepoResults.append(repoResults)
+        }
     }
 
     func amountOfCells() -> Int? {
