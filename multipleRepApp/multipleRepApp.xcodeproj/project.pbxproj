@@ -23,6 +23,8 @@
 		0D00521229D32F0B007CD2F8 /* BitBucketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00521129D32F0B007CD2F8 /* BitBucketModel.swift */; };
 		0D00521429D32FE9007CD2F8 /* GitHubModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00521329D32FE9007CD2F8 /* GitHubModel.swift */; };
 		0D00521629D3317C007CD2F8 /* RepositopyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00521529D3317C007CD2F8 /* RepositopyListViewModel.swift */; };
+		0D00521829D41E5D007CD2F8 /* MainScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00521729D41E5D007CD2F8 /* MainScreenModel.swift */; };
+		0D00521A29D42D43007CD2F8 /* TableViewProvidingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00521929D42D43007CD2F8 /* TableViewProvidingProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		0D00521129D32F0B007CD2F8 /* BitBucketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitBucketModel.swift; sourceTree = "<group>"; };
 		0D00521329D32FE9007CD2F8 /* GitHubModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubModel.swift; sourceTree = "<group>"; };
 		0D00521529D3317C007CD2F8 /* RepositopyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositopyListViewModel.swift; sourceTree = "<group>"; };
+		0D00521729D41E5D007CD2F8 /* MainScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModel.swift; sourceTree = "<group>"; };
+		0D00521929D42D43007CD2F8 /* TableViewProvidingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewProvidingProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,8 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				0D0051F029D2F6D5007CD2F8 /* Protocols */,
-				0D0051EF29D2F6C8007CD2F8 /* View */,
 				0D0051F629D301D7007CD2F8 /* ViewModel */,
+				0D0051EF29D2F6C8007CD2F8 /* View */,
 			);
 			path = RepositoryListView;
 			sourceTree = "<group>";
@@ -120,6 +124,7 @@
 		0D0051F029D2F6D5007CD2F8 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				0D00521929D42D43007CD2F8 /* TableViewProvidingProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -165,6 +170,7 @@
 			children = (
 				0D00521129D32F0B007CD2F8 /* BitBucketModel.swift */,
 				0D00521329D32FE9007CD2F8 /* GitHubModel.swift */,
+				0D00521729D41E5D007CD2F8 /* MainScreenModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -239,9 +245,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D00521829D41E5D007CD2F8 /* MainScreenModel.swift in Sources */,
 				0D00520829D32775007CD2F8 /* NetworkManager.swift in Sources */,
 				0D00520429D32020007CD2F8 /* ConstrainConstants.swift in Sources */,
 				0D0051F529D2F8CD007CD2F8 /* Fonts.swift in Sources */,
+				0D00521A29D42D43007CD2F8 /* TableViewProvidingProtocol.swift in Sources */,
 				0D0051F229D2F7E2007CD2F8 /* RepositoryListTableViewCell.swift in Sources */,
 				0D0051FF29D31C91007CD2F8 /* StringConstatnts.swift in Sources */,
 				0D00520229D31D6A007CD2F8 /* DynamicTableView.swift in Sources */,
