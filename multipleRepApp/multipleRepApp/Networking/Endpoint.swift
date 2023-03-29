@@ -1,7 +1,5 @@
 import Foundation
 
-    // https://api.bitbucket.org/2.0/repositories?fields=values.name,values.owner,values.description
-    // https://api.github.com/repositories?
 struct Endpoint {
 
     var host: apiRepo
