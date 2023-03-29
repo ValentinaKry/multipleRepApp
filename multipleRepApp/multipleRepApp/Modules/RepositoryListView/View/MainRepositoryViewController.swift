@@ -2,10 +2,9 @@ import UIKit
 
 final class MainRepositoryViewController: UIViewController {
     
-    var viewModel: TableViewProvidingProtocol & SearchProvidingProtocol
-    var isSearched = false
+    var viewModel: TableViewProvidingProtocol & SearchProvidingProtocol & LinkMethodProtocol
     
-    init(viewModel: TableViewProvidingProtocol & SearchProvidingProtocol) {
+    init(viewModel: TableViewProvidingProtocol & SearchProvidingProtocol & LinkMethodProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -25,7 +24,7 @@ final class MainRepositoryViewController: UIViewController {
     }()
     
     private let tableView: DynamicTableView = {
-        let tableView = DynamicTableView()
+        let tableView = DynamicTableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .singleLine
         tableView.showsVerticalScrollIndicator = false
@@ -137,7 +136,7 @@ final class MainRepositoryViewController: UIViewController {
 
 extension MainRepositoryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+
         guard let result = viewModel.amountOfCells() else { return 1 }
             // If there's no events, return 1 cell, with info label
         if result == 0 {
@@ -149,6 +148,7 @@ extension MainRepositoryViewController: UITableViewDelegate, UITableViewDataSour
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         guard let resultOfData = viewModel.amountOfCells() else { return UITableViewCell() }
         if resultOfData == 0 {
             guard let cell = tableView.dequeueReusableCell(
@@ -161,9 +161,18 @@ extension MainRepositoryViewController: UITableViewDelegate, UITableViewDataSour
                    let data = viewModel.getDataResult(cellForRowAt: indexPath)
             else { return UITableViewCell() }
             cell.configure(with: data)
+            cell.accessoryType = .disclosureIndicator
+            
             return cell
+
         }
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let vc = viewModel.getDetailViewController(didSelectRowAt: indexPath) else { return }
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
 }
 
 extension MainRepositoryViewController: UISearchBarDelegate {

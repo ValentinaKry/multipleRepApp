@@ -1,6 +1,7 @@
 import Foundation
 
-final class RepositopyListViewModel: TableViewProvidingProtocol, SearchProvidingProtocol {
+final class RepositopyListViewModel: TableViewProvidingProtocol, SearchProvidingProtocol, LinkMethodProtocol {
+
     var reloadTable: (() -> Void)?
     var retryCompletion: ((String?) -> Void)?
     private var networkManager: DataSourceManagerProtocol
@@ -13,7 +14,6 @@ final class RepositopyListViewModel: TableViewProvidingProtocol, SearchProviding
         }
     }
     private var filteredArrayData = [MainScreenModel]()
-
 
     init(networkManager: DataSourceManagerProtocol) {
         self.networkManager = networkManager
@@ -58,7 +58,8 @@ final class RepositopyListViewModel: TableViewProvidingProtocol, SearchProviding
                                               avatar: element.owner.avatarURL,
                                               repoTitle: element.fullName,
                                               repoDescribe: element.description,
-                                              repoType: "Github")
+                                              repoType: "Github",
+                                              detailLink: element.owner.htmlURL)
             allRepoResults.append(repoResults)
         }
         guard let bitBucketData = bitBucketResult?.values else { return }
@@ -67,7 +68,8 @@ final class RepositopyListViewModel: TableViewProvidingProtocol, SearchProviding
                                               avatar: element.owner.links.avatar.href,
                                               repoTitle: element.owner.nickname,
                                               repoDescribe: element.description,
-                                              repoType: "Bitbucket")
+                                              repoType: "Bitbucket",
+                                              detailLink: element.owner.links.html.href)
             allRepoResults.append(repoResults)
         }
     }
@@ -93,4 +95,15 @@ final class RepositopyListViewModel: TableViewProvidingProtocol, SearchProviding
             data.userName.contains(searchText)
         }
     }
+
+    func createLink() -> URL {
+        guard let url = URL(string: filteredArrayData[0].detailLink) else { fatalError() }
+        return url
+    }
+
+    func getDetailViewController(didSelectRowAt indexPath: IndexPath) -> DetailViewController? {
+           let stringURL = filteredArrayData[indexPath.row].detailLink
+           let datailVC = DetailViewController(detailUrl: stringURL)
+           return datailVC
+       }
 }

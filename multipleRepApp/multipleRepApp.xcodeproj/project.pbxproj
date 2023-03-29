@@ -28,6 +28,8 @@
 		0D00521C29D431E0007CD2F8 /* ErrorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00521B29D431E0007CD2F8 /* ErrorTableViewCell.swift */; };
 		0D00521F29D440C8007CD2F8 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D00521E29D440C8007CD2F8 /* UIViewController.swift */; };
 		0DA1904729D469D10016E9C5 /* SearchProvidingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA1904629D469D10016E9C5 /* SearchProvidingProtocol.swift */; };
+		0DF6536729D490860007827B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF6536629D490860007827B /* DetailViewController.swift */; };
+		0DF6536B29D49A950007827B /* LinkMethodProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF6536A29D49A950007827B /* LinkMethodProtocol.swift */; };
 		5F68FAE2E66C3A6847C926AA /* Pods_multipleRepApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E41AF15920E68C55D440C7 /* Pods_multipleRepApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +57,8 @@
 		0D00521B29D431E0007CD2F8 /* ErrorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTableViewCell.swift; sourceTree = "<group>"; };
 		0D00521E29D440C8007CD2F8 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		0DA1904629D469D10016E9C5 /* SearchProvidingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProvidingProtocol.swift; sourceTree = "<group>"; };
+		0DF6536629D490860007827B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		0DF6536A29D49A950007827B /* LinkMethodProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkMethodProtocol.swift; sourceTree = "<group>"; };
 		107A2C4CD596445848EA33F9 /* Pods-multipleRepApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-multipleRepApp.debug.xcconfig"; path = "Target Support Files/Pods-multipleRepApp/Pods-multipleRepApp.debug.xcconfig"; sourceTree = "<group>"; };
 		83E41AF15920E68C55D440C7 /* Pods_multipleRepApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_multipleRepApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C459332AD6F9AE4FC43B723B /* Pods-multipleRepApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-multipleRepApp.release.xcconfig"; path = "Target Support Files/Pods-multipleRepApp/Pods-multipleRepApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 		0D0051ED29D2F60E007CD2F8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				0DF6536329D48F610007827B /* RepositoryDetail */,
 				0D0051EE29D2F61E007CD2F8 /* RepositoryListView */,
 			);
 			path = Modules;
@@ -140,6 +145,7 @@
 			children = (
 				0D00521929D42D43007CD2F8 /* TableViewProvidingProtocol.swift */,
 				0DA1904629D469D10016E9C5 /* SearchProvidingProtocol.swift */,
+				0DF6536A29D49A950007827B /* LinkMethodProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -197,6 +203,22 @@
 				0D00521E29D440C8007CD2F8 /* UIViewController.swift */,
 			);
 			path = Extentions;
+			sourceTree = "<group>";
+		};
+		0DF6536329D48F610007827B /* RepositoryDetail */ = {
+			isa = PBXGroup;
+			children = (
+				0DF6536529D48F7A0007827B /* View */,
+			);
+			path = RepositoryDetail;
+			sourceTree = "<group>";
+		};
+		0DF6536529D48F7A0007827B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0DF6536629D490860007827B /* DetailViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		88F696DCCD1F4674076A628B /* Pods */ = {
@@ -337,6 +359,7 @@
 				0D0051F529D2F8CD007CD2F8 /* Fonts.swift in Sources */,
 				0D00521A29D42D43007CD2F8 /* TableViewProvidingProtocol.swift in Sources */,
 				0D0051F229D2F7E2007CD2F8 /* RepositoryListTableViewCell.swift in Sources */,
+				0DF6536729D490860007827B /* DetailViewController.swift in Sources */,
 				0D0051FF29D31C91007CD2F8 /* StringConstatnts.swift in Sources */,
 				0D00520229D31D6A007CD2F8 /* DynamicTableView.swift in Sources */,
 				0D0051DE29D2E2BD007CD2F8 /* MainRepositoryViewController.swift in Sources */,
@@ -348,6 +371,7 @@
 				0D00520C29D327D1007CD2F8 /* Endpoint.swift in Sources */,
 				0D00521429D32FE9007CD2F8 /* GitHubModel.swift in Sources */,
 				0DA1904729D469D10016E9C5 /* SearchProvidingProtocol.swift in Sources */,
+				0DF6536B29D49A950007827B /* LinkMethodProtocol.swift in Sources */,
 				0D00520A29D3279E007CD2F8 /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
