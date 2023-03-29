@@ -1,13 +1,18 @@
 import Foundation
 
-final class RepositopyListViewModel: TableViewProvidingProtocol {
+final class RepositopyListViewModel: TableViewProvidingProtocol, SearchProvidingProtocol {
     var reloadTable: (() -> Void)?
     var retryCompletion: ((String?) -> Void)?
     private var networkManager: DataSourceManagerProtocol
     private var gitHubResult = [GitHubModel]()
     private var bitBucketResult : BitBucketModel?
     private var repoResults: MainScreenModel?
-    private var allRepoResults = [MainScreenModel?]()
+    private var allRepoResults = [MainScreenModel]() {
+        didSet {
+            filteredArrayData = allRepoResults
+        }
+    }
+    private var filteredArrayData = [MainScreenModel]()
 
 
     init(networkManager: DataSourceManagerProtocol) {
@@ -19,12 +24,12 @@ final class RepositopyListViewModel: TableViewProvidingProtocol {
         let url = Endpoint(host: .gitHub, path: .gitHub, quertyName: .gitHub, quertyValue: .gitHub)
         networkManager.loadData(url: url) { [weak self] (item: [GitHubModel]) in
             guard let self = self else { return }
+            self.allRepoResults.removeAll()
             self.gitHubResult = item
             group.enter()
             self.loadBitBuckedData {
                 group.leave()
             }
-
             group.notify(queue: .main) {
                 self.reloadTable?()
             }
@@ -68,13 +73,24 @@ final class RepositopyListViewModel: TableViewProvidingProtocol {
     }
 
     func amountOfCells() -> Int? {
-        allRepoResults.count
+        filteredArrayData.count
     }
 
     func getDataResult(cellForRowAt indexPath: IndexPath) -> MainScreenModel? {
-        guard !allRepoResults.isEmpty,
-              indexPath.row <= allRepoResults.count
+        guard !filteredArrayData.isEmpty,
+              indexPath.row <= filteredArrayData.count
+                
         else { return nil }
-        return allRepoResults[indexPath.row]
+        return filteredArrayData[indexPath.row]
+    }
+
+    func filteredData(searchText: String) {
+        guard !searchText.isEmpty  else {
+        filteredArrayData = allRepoResults
+            return
+        }
+        filteredArrayData = allRepoResults.filter{ data in
+            data.userName.contains(searchText)
+        }
     }
 }

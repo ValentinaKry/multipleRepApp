@@ -1,18 +1,19 @@
 import UIKit
 
 final class MainRepositoryViewController: UIViewController {
-
-    var viewModel: TableViewProvidingProtocol
-
-    init(viewModel: TableViewProvidingProtocol) {
+    
+    var viewModel: TableViewProvidingProtocol & SearchProvidingProtocol
+    var isSearched = false
+    
+    init(viewModel: TableViewProvidingProtocol & SearchProvidingProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     private let searchController: UISearchController = {
         let search = UISearchController()
         search.searchBar.translatesAutoresizingMaskIntoConstraints = false
@@ -22,7 +23,7 @@ final class MainRepositoryViewController: UIViewController {
         search.hidesNavigationBarDuringPresentation = false
         return search
     }()
-
+    
     private let tableView: DynamicTableView = {
         let tableView = DynamicTableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -32,20 +33,20 @@ final class MainRepositoryViewController: UIViewController {
         tableView.register(ErrorTableViewCell.self, forCellReuseIdentifier: ErrorTableViewCell.cellID)
         return tableView
     }()
-
+    
     private let container: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
+    
     private let loaderIndicatorView: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
         indicator.color = .systemPink
         indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -57,30 +58,30 @@ final class MainRepositoryViewController: UIViewController {
         setupUI()
         addDatasourceAndDelegate()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         prepareForAppearence()
     }
-
+    
     private func setupUI() {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
     }
-
+    
     private func addAllSubviews() {
         view.addSubview(container)
         container.addSubview(tableView)
         container.addSubview(loaderIndicatorView)
     }
-
+    
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             container.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             container.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             container.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             container.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-
+            
             tableView.topAnchor.constraint(equalTo: container.topAnchor),
             tableView.leadingAnchor.constraint(
                 equalTo: container.leadingAnchor,
@@ -89,23 +90,24 @@ final class MainRepositoryViewController: UIViewController {
                 equalTo: container.trailingAnchor,
                 constant: -ConstrainConstant.tableViewOffset.rawValue),
             tableView.bottomAnchor.constraint(equalTo: container.bottomAnchor),
-
+            
             loaderIndicatorView.centerXAnchor.constraint(equalTo: container.centerXAnchor),
             loaderIndicatorView.centerYAnchor.constraint(equalTo: container.centerYAnchor)
         ])
     }
-
+    
     func addDatasourceAndDelegate() {
         tableView.dataSource = self
         tableView.delegate = self
+        searchController.searchBar.delegate = self
     }
-
+    
     private func prepareForAppearence() {
         navigationController?.isNavigationBarHidden = false
         searchController.searchBar.text = ""
         searchController.searchBar.endEditing(true)
     }
-
+    
     private func setupTableView() {
         loaderIndicatorView.startAnimating()
         viewModel.reloadTable = {
@@ -130,11 +132,12 @@ final class MainRepositoryViewController: UIViewController {
         }
         viewModel.loadData()
     }
-
+    
 }
 
 extension MainRepositoryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         guard let result = viewModel.amountOfCells() else { return 1 }
             // If there's no events, return 1 cell, with info label
         if result == 0 {
@@ -142,9 +145,9 @@ extension MainRepositoryViewController: UITableViewDelegate, UITableViewDataSour
         } else {
             return  result
         }
-
     }
-
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let resultOfData = viewModel.amountOfCells() else { return UITableViewCell() }
         if resultOfData == 0 {
@@ -153,20 +156,19 @@ extension MainRepositoryViewController: UITableViewDelegate, UITableViewDataSour
                 for: indexPath) as? ErrorTableViewCell
             else { return UITableViewCell() }
             return cell
-        } else {
+        } else { 
             guard  let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryListTableViewCell.cellID, for: indexPath) as? RepositoryListTableViewCell,
                    let data = viewModel.getDataResult(cellForRowAt: indexPath)
-                   else { return UITableViewCell() }
+            else { return UITableViewCell() }
             cell.configure(with: data)
             return cell
         }
     }
-
-
 }
 
 extension MainRepositoryViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
+        viewModel.filteredData(searchText: searchText)
+        tableView.reloadData()
     }
 }
